@@ -57,10 +57,10 @@ export default function Navbar() {
         .get(`/search/multi?query=${query}`)
         .then((res) => {
           setSearchData(res.data.results);
+          setLoading(false);
         })
         .catch((err) => console.error(err));
     }
-    setLoading(false);
   }, [query]);
 
   return (
@@ -108,44 +108,46 @@ export default function Navbar() {
           </div>
 
           {/* Searches */}
-          {searchData.length > 0 && query.length > 0 && (
+          {query.length > 0 && (
             <div className="bg-zinc-800 rounded-lg absolute top-[110%] w-full max-h-80 overflow-auto">
-              {searchData.map((item, i) => {
-                return loading ? (
-                  <div className="p-4 rounded-lg duration-300 ease-in-out">
-                    <Loading />
-                  </div>
-                ) : (
-                  <Link
-                    to=""
-                    key={i}
-                    className="flex gap-3 md:gap-4 items-center p-4 hover:bg-violet-500 rounded-lg duration-300 ease-in-out"
-                  >
-                    <div className="size-16 md:size-20 lg:size-28 flex-shrink-0 shadow-lg">
-                      <img
-                        src={
-                          item.backdrpo_path ||
-                          item.poster_path ||
-                          item.profile_path
-                            ? `https://image.tmdb.org/t/p/original/${
-                                item.backdrop_path ||
-                                item.poster_path ||
-                                item.profile_path
-                              }`
-                            : "/no-image.webp"
-                        }
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
-                    <h2 className="text-sm md:text-md lg:text-xl">
-                      {item.name ||
-                        item.title ||
-                        item.original_name ||
-                        item.original_title}
-                    </h2>
-                  </Link>
-                );
-              })}
+              {loading ? (
+                <div className="w-full h-20 grid place-items-center">
+                  <Loading />
+                </div>
+              ) : (
+                searchData.map((item, i) => {
+                  return (
+                    <Link
+                      to=""
+                      key={i}
+                      className="flex gap-3 md:gap-4 items-center p-4 hover:bg-violet-500 rounded-lg duration-300 ease-in-out"
+                    >
+                      <div className="size-16 md:size-20 lg:size-28 flex-shrink-0 shadow-lg">
+                        <img
+                          src={
+                            item.backdrpo_path ||
+                            item.poster_path ||
+                            item.profile_path
+                              ? `https://image.tmdb.org/t/p/original/${
+                                  item.backdrop_path ||
+                                  item.poster_path ||
+                                  item.profile_path
+                                }`
+                              : "/no-image.webp"
+                          }
+                          className="w-full h-full object-cover rounded-md"
+                        />
+                      </div>
+                      <h2 className="text-sm md:text-md lg:text-xl">
+                        {item.name ||
+                          item.title ||
+                          item.original_name ||
+                          item.original_title}
+                      </h2>
+                    </Link>
+                  );
+                })
+              )}
             </div>
           )}
         </div>
