@@ -51,12 +51,14 @@ export default function Navbar() {
 
   // fetch search data from api when search query changes
   useEffect(() => {
+    // before fetching data, set loading to true
     setLoading(true);
     if (query.length > 0) {
       axios
         .get(`/search/multi?query=${query}`)
         .then((res) => {
           setSearchData(res.data.results);
+          // after fetching data, set loading to false
           setLoading(false);
         })
         .catch((err) => console.error(err));
@@ -111,9 +113,7 @@ export default function Navbar() {
           {query.length > 0 && (
             <div className="bg-zinc-800 rounded-lg absolute top-[110%] w-full max-h-80 overflow-auto">
               {loading ? (
-                <div className="w-full h-20 grid place-items-center">
-                  <Loading />
-                </div>
+                <Loading />
               ) : (
                 searchData.map((item, i) => {
                   return (
