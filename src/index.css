@@ -6,6 +6,12 @@ body {
   background-color: rgb(24 24 27);
   color: white;
   overflow-x: hidden;
+  cursor: default;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .glass {

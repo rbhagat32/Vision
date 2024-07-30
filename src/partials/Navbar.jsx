@@ -93,7 +93,7 @@ export default function Navbar() {
               setQuery(e.target.value);
               setIsHidden(false);
             }}
-            className="outline-none border border-zinc-200 rounded-full text-white placeholder:text-zinc-200 bg-transparent py-2 px-6 w-56 md:w-72 lg:w-[500px]"
+            className="outline-none border border-zinc-200 rounded-full text-white placeholder:text-zinc-200 bg-transparent py-2 px-6 w-56 md:w-72 lg:w-96"
             type="text"
             placeholder="Search"
           />
