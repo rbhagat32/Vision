@@ -73,17 +73,21 @@ export default function Navbar() {
         onFocusCapture={() => setIsHidden(false)}
         animate={isHidden ? "hidden" : "visible"}
         transition={{ duration: 0.3 }}
-        className="fixed z-[999] py-2 px-4 md:px-12 w-full flex justify-between items-center"
+        className="fixed z-[999] mt-2 py-2 px-4 md:px-12 w-full flex justify-between items-center"
       >
         <div className="flex gap-3 items-center">
           <button
             onClick={() => setSideBar(!sideBar)}
-            className="bg-transparent border border-zinc-200 rounded-full p-1"
+            className="bg-transparent border border-white rounded-full p-1"
           >
-            <IoMenuOutline className="text-3xl" />
+            {sideBar ? (
+              <IoCloseSharp className="text-3xl" />
+            ) : (
+              <IoMenuOutline className="text-3xl" />
+            )}
           </button>
 
-          <div className="bg-violet-500 w-20 h-10">{/* add logo here */}</div>
+          {/* <div className="bg-violet-500 w-20 h-10">add logo here</div> */}
         </div>
 
         <div className="glass relative rounded-full">
@@ -93,7 +97,7 @@ export default function Navbar() {
               setQuery(e.target.value);
               setIsHidden(false);
             }}
-            className="outline-none border border-zinc-200 rounded-full text-white placeholder:text-zinc-200 bg-transparent py-2 px-6 w-56 md:w-72 lg:w-96"
+            className="outline-none border border-white rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-56 md:w-72 lg:w-96"
             type="text"
             placeholder="Search"
           />

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import Loading from "../utils/Loading";
 import Button from "../components/Button";
-import Swiper from "../components/SwiperJs";
+import SwiperJs from "../components/SwiperJs";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState(null);
-  const [trending, setTrending] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [tvShows, setTvShows] = useState([]);
 
   const getFeatured = () => {
     setLoading(true);
@@ -16,7 +17,32 @@ export default function Home() {
       .then((res) => {
         const randomIndex = Math.floor(Math.random() * res.data.results.length);
         setFeatured(res.data.results[randomIndex]);
-        setTrending(res.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getTrendingMovies = () => {
+    setLoading(true);
+    axios
+      .get("/trending/movie/day")
+      .then((res) => {
+        setMovies(res.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getTrendingTvShows = () => {
+    setLoading(true);
+    axios
+      .get("/trending/tv/day")
+      .then((res) => {
+        setTvShows(res.data.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -26,14 +52,17 @@ export default function Home() {
 
   useEffect(() => {
     getFeatured();
+    getTrendingMovies();
+    getTrendingTvShows();
   }, []);
 
   return loading ? (
-    <Loading height="h-[70vh]" size="size-14" />
+    <Loading height="h-screen" size="size-14" />
   ) : (
-    <div className="h-screen">
+    <div className="pb-10">
       <Featured item={featured} />
-      <Trending items={trending} />
+      <Trending category="Movies" items={movies} />
+      <Trending category="TV Shows" items={tvShows} />
     </div>
   );
 }
@@ -56,8 +85,8 @@ const Featured = ({ item }) => {
           {item.name || item.title || item.original_name || item.original_title}
         </h1>
         <p className="max-w-[80ch] text-zinc-400 text-sm md:text-lg">
-          {item.overview.length > 200
-            ? item.overview.slice(0, 200) + "..."
+          {item.overview.length > 180
+            ? item.overview.slice(0, 180) + "..."
             : item.overview}
         </p>
         <Button text="Watch Trailer" />
@@ -66,13 +95,15 @@ const Featured = ({ item }) => {
   );
 };
 
-const Trending = ({ items }) => {
+const Trending = ({ category, items }) => {
   return (
-    <div className="px-4 md:px-12 py-10 w-full flex flex-col gap-4">
+    <div className="px-4 md:px-12 mt-16 w-full flex flex-col gap-4">
       <div className="flex justify-between items-center">
-        <h1 className="text-zinc-400 text-4xl">Trending</h1>
+        <h1 className="font-medium text-4xl">Trending {category}</h1>
+        {/* filter */}
       </div>
-      <Swiper items={items} />
+
+      <SwiperJs items={items} />
     </div>
   );
 };
