@@ -27,7 +27,9 @@ export default function Home() {
     getFeatured();
   }, []);
 
-  return (
+  return loading ? (
+    <Loading height="h-[60vh]" size="size-14" />
+  ) : (
     <div className="h-screen">
       <Featured item={featured} />
     </div>
@@ -35,7 +37,7 @@ export default function Home() {
 }
 
 const Featured = ({ item }) => {
-  return item ? (
+  return (
     <div
       className="h-[60vh] xl:h-[70vh]"
       style={{
@@ -56,10 +58,8 @@ const Featured = ({ item }) => {
             ? item.overview.slice(0, 200) + "..."
             : item.overview}
         </p>
-        <Button />
+        <Button text="Watch Trailer" />
       </div>
     </div>
-  ) : (
-    <Loading height="h-[60vh] xl:h-[70vh]" />
   );
 };

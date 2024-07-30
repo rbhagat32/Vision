@@ -158,7 +158,7 @@ export default function Navbar() {
         initial={{ x: "-100%" }}
         animate={sideBar ? { x: 0 } : { x: "-100%" }}
         transition={{ duration: 0.3 }}
-        className="fixed z-[998] h-screen w-52 md:w-60 lg:w-72 xl:w-84 top-0 left-0 border-r border-zinc-600 bg-zinc-900/70"
+        className="fixed z-[998] h-screen w-52 md:w-60 lg:w-72 xl:w-84 top-0 left-0 border-r border-zinc-600 bg-zinc-900/90"
       >
         <div className="relative top-24 flex flex-col gap-8 px-4 md:px-8 text-xl lg:text-2xl">
           <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
