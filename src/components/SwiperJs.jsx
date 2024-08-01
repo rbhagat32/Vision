@@ -6,9 +6,8 @@ import "swiper/css/free-mode";
 import { Link } from "react-router-dom";
 
 export default function SwiperJs({ items }) {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   // set window width on resize
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -48,13 +47,16 @@ export default function SwiperJs({ items }) {
               to=""
               className="block pb-4 border border-zinc-700 rounded-md overflow-hidden"
             >
-              <div className="w-full h-full">
+              <div className="relative w-full h-full">
                 <img
                   src={`https://image.tmdb.org/t/p/original/${
                     item.backdrop_path || item.poster_path || item.profile_path
                   }`}
                   className="w-full h-full object-cover"
                 />
+                <div className="mb-5 mr-4 absolute bottom-0 right-0 size-12 bg-violet-400 rounded-full grid place-items-center text-xl font-semibold">
+                  {item?.vote_average ? item?.vote_average.toFixed(1) : "N/A"}
+                </div>
               </div>
 
               <div className="mt-2 h-16 flex justify-start">

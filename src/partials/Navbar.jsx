@@ -129,13 +129,13 @@ export default function Navbar() {
                       <div className="size-16 md:size-20 lg:size-28 flex-shrink-0 shadow-lg">
                         <img
                           src={
-                            item.backdrpo_path ||
-                            item.poster_path ||
-                            item.profile_path
+                            item?.backdrpo_path ||
+                            item?.poster_path ||
+                            item?.profile_path
                               ? `https://image.tmdb.org/t/p/original/${
-                                  item.backdrop_path ||
-                                  item.poster_path ||
-                                  item.profile_path
+                                  item?.backdrop_path ||
+                                  item?.poster_path ||
+                                  item?.profile_path
                                 }`
                               : "/no-image.webp"
                           }
@@ -143,10 +143,10 @@ export default function Navbar() {
                         />
                       </div>
                       <h2 className="text-sm md:text-md lg:text-xl">
-                        {item.name ||
-                          item.title ||
-                          item.original_name ||
-                          item.original_title}
+                        {item?.name ||
+                          item?.title ||
+                          item?.original_name ||
+                          item?.original_title}
                       </h2>
                     </Link>
                   );

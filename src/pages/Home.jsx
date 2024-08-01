@@ -73,7 +73,7 @@ const Featured = ({ item }) => {
       className="h-[70vh]"
       style={{
         background: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original/${
-          item.backdrop_path || item.poster_path || item.profile_path
+          item?.backdrop_path || item?.poster_path
         })`,
         backgroundSize: "cover",
         backgroundPosition: "top",
@@ -82,12 +82,15 @@ const Featured = ({ item }) => {
     >
       <div className="px-4 md:px-12 py-10 w-full h-full flex flex-col gap-4 justify-end">
         <h1 className="w-full md:max-w-[18ch] font-black text-5xl sm:text-6xl md:text-7xl tracking-tight leading-none">
-          {item.name || item.title || item.original_name || item.original_title}
+          {item?.name ||
+            item?.title ||
+            item?.original_name ||
+            item?.original_title}
         </h1>
         <p className="max-w-[80ch] text-zinc-400 text-sm md:text-lg">
-          {item.overview.length > 180
-            ? item.overview.slice(0, 180) + "..."
-            : item.overview}
+          {item?.overview.length > 180
+            ? item?.overview.slice(0, 180) + "..."
+            : item?.overview}
         </p>
         <Button text="Watch Trailer" />
       </div>
@@ -99,8 +102,9 @@ const Trending = ({ category, items }) => {
   return (
     <div className="px-4 md:px-12 mt-16 w-full flex flex-col gap-4">
       <div className="flex justify-between items-center">
-        <h1 className="font-medium text-4xl">Trending {category}</h1>
-        {/* filter */}
+        <h1 className="mb-2 font-medium text-3xl lg:text-4xl">
+          Trending {category}
+        </h1>
       </div>
 
       <SwiperJs items={items} />
