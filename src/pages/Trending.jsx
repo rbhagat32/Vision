@@ -45,14 +45,14 @@ export default function Trending() {
 
         <div className="flex gap-2 lg:gap-4 items-center mt-2.5">
           <Dropdown
-            title="Category"
+            label={category}
             options={["all", "movie", "tv"]}
             setterFunction={(e) =>
               setCategory(revertCapitalize(e.target.value))
             }
           />
           <Dropdown
-            title="Duration"
+            label={duration}
             options={["day", "week"]}
             setterFunction={(e) =>
               setDuration(revertCapitalize(e.target.value))

@@ -61,7 +61,7 @@ export default function SwiperJs({ items }) {
                 </div>
               </div>
 
-              <div className="mt-2 h-16 flex justify-start">
+              <div className="mt-2 h-16">
                 <h1 className="group-hover:text-white px-2 text-2xl text-zinc-400 duration-300 ease-in-out">
                   {item?.name ||
                     item?.title ||

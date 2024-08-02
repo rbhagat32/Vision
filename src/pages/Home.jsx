@@ -109,7 +109,7 @@ const Trending = ({ category, items }) => {
         </h1>
 
         <Link
-          to={`/trending/${category}`}
+          to="/trending"
           className="block text-zinc-400 hover:text-violet-400 duration-300 ease-in-out"
         >
           Explore More

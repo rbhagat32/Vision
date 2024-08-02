@@ -22,13 +22,19 @@ export default function Cards({ data }) {
             </div>
           </div>
 
-          <div className="mt-2">
-            <h1 className="group-hover:text-white px-2 text-2xl text-zinc-400 duration-300 ease-in-out">
+          <div className="mt-2 px-2 flex flex-col gap-2">
+            <h1 className="text-2xl">
               {item?.name ||
                 item?.title ||
                 item?.original_name ||
                 item?.original_title}
             </h1>
+
+            <p className="max-w-[80ch] text-zinc-400 text-sm md:text-md">
+              {item?.overview.length > 140
+                ? item?.overview.slice(0, 140) + "..."
+                : item?.overview}
+            </p>
           </div>
         </Link>
       ))}
