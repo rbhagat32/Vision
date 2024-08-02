@@ -50,10 +50,10 @@ export default function Popular() {
     <div className="pb-10 px-4 md:px-12 pt-20 flex flex-col gap-8">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
-          <button onClick={() => navigate("/")} className="mt-1.5">
+          <button onClick={() => navigate(-1)} className="mt-1.5">
             <IoArrowBackOutline className="text-3xl lg:text-4xl" />
           </button>
-          <h1 className="text-4xl lg:text-5xl font-semibold">Popular</h1>
+          <h1 className="text-4xl font-light">Popular</h1>
         </div>
 
         <div className="flex gap-2 lg:gap-4 items-center mt-2.5">

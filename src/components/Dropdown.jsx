@@ -11,7 +11,7 @@ export default function Dropdown({ label, options, setterFunction }) {
       <select
         onChange={setterFunction}
         defaultValue="default"
-        className="block cursor-pointer outline-none border border-white rounded-md text-white placeholder:text-white bg-transparent py-1.5 px-3"
+        className="block cursor-pointer outline-none border border-zinc-600 rounded-md text-white placeholder:text-white bg-transparent py-1.5 px-3"
       >
         <option value="default" disabled className="bg-slate-800"></option>
 

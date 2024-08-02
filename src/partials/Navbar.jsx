@@ -84,14 +84,12 @@ export default function Navbar() {
 
   // fetch search data from api when search query changes
   useEffect(() => {
-    // before fetching data, set loading to true
     setLoading(true);
     if (query.length > 0) {
       axios
         .get(`/search/multi?query=${query}`)
         .then((res) => {
           setSearchData(res.data.results);
-          // after fetching data, set loading to false
           setLoading(false);
         })
         .catch((err) => console.error(err));
@@ -111,7 +109,9 @@ export default function Navbar() {
         <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
           <button
             onClick={() => setSideBar(!sideBar)}
-            className="bg-transparent border border-white rounded-full p-1"
+            className={`bg-transparent border ${
+              sideBar ? "border-rose-400" : "border-white"
+            } rounded-full p-1 duration-300 ease-in-out`}
           >
             {sideBar ? (
               <IoCloseSharp className="text-3xl" />
@@ -126,7 +126,7 @@ export default function Navbar() {
             className="relative -top-0.5 font-black text-3xl sm:text-4xl"
           >
             Vision
-            <span className="ml-1 relative top-[1px] inline-block size-3.5 bg-rose-400 rounded-full"></span>
+            <span className="ml-1 relative top-[1px] inline-block size-4 sm:size-[18px] bg-rose-400 rounded-full"></span>
           </Link>
         </div>
 
@@ -137,7 +137,7 @@ export default function Navbar() {
               setQuery(e.target.value);
               setIsHidden(false);
             }}
-            className="outline-none border border-white rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-48 md:w-72 lg:w-96"
+            className="outline-none border border-white focus:border-rose-400 rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-48 md:w-72 lg:w-96 duration-300 ease-in-out"
             type="text"
             placeholder="Search"
           />

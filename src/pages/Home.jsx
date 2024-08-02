@@ -90,7 +90,7 @@ const Featured = ({ item }) => {
             item?.original_name ||
             item?.original_title}
         </h1>
-        <p className="max-w-[80ch] text-zinc-400 text-sm md:text-lg">
+        <p className="max-w-[80ch] text-zinc-300 text-sm md:text-lg">
           {item?.overview.length > 180
             ? item?.overview.slice(0, 180) + "..."
             : item?.overview}

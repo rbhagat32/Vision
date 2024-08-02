@@ -45,7 +45,7 @@ export default function SwiperJs({ items }) {
           <SwiperSlide key={i}>
             <Link
               to=""
-              className="group block pb-3 border border-zinc-700 rounded-md overflow-hidden"
+              className="group block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
             >
               <div className="relative">
                 <img
