@@ -21,7 +21,6 @@ export default function Trending() {
     axios
       .get(`/trending/${category}/${duration}?page=${page}`)
       .then((res) => {
-        console.log(res.data);
         setTrending((prev) => [...prev, ...res.data.results]);
         setPage(page + 1);
         setLoading(false);
