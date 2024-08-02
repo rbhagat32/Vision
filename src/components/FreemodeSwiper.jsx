@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { Link } from "react-router-dom";
 
-export default function SwiperJs({ items }) {
+export default function FreemodeSwiper({ items }) {
   // set window width on resize
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {

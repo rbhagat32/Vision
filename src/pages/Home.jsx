@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import { Link } from "react-router-dom";
 import Loading from "../utils/Loading";
-import Button from "../components/Button";
-import SwiperJs from "../components/SwiperJs";
+import AutoplaySwiper from "../components/AutoplaySwiper";
+import FreemodeSwiper from "../components/FreemodeSwiper";
 import { capitalize } from "../utils/capitalize";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [featured, setFeatured] = useState(null);
+  const [featured, setFeatured] = useState([]);
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
   document.title = "Vision";
@@ -18,8 +18,19 @@ export default function Home() {
     axios
       .get("/trending/all/day")
       .then((res) => {
-        const randomIndex = Math.floor(Math.random() * res.data.results.length);
-        setFeatured(res.data.results[randomIndex]);
+        const results = res.data.results;
+        const randomItems = [];
+        const usedIndices = new Set();
+
+        while (randomItems.length < results.length && randomItems.length < 5) {
+          const randomIndex = Math.floor(Math.random() * results.length);
+          if (!usedIndices.has(randomIndex)) {
+            randomItems.push(results[randomIndex]);
+            usedIndices.add(randomIndex);
+          }
+        }
+
+        setFeatured(randomItems);
         setLoading(false);
       })
       .catch((err) => {
@@ -63,42 +74,15 @@ export default function Home() {
     <Loading height="h-screen" size="size-14" />
   ) : (
     <div className="pb-10">
-      <Featured item={featured} />
+      <Featured items={featured} />
       <Trending category="movies" items={movies} />
       <Trending category="tv-shows" items={tvShows} />
     </div>
   );
 }
 
-const Featured = ({ item }) => {
-  return (
-    <div
-      className="h-[70vh]"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original/${
-          item?.backdrop_path || item?.poster_path
-        })`,
-        backgroundSize: "cover",
-        backgroundPosition: "top",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="px-4 md:px-12 py-10 w-full h-full flex flex-col gap-4 justify-end">
-        <h1 className="w-full md:max-w-[18ch] font-black text-5xl sm:text-6xl md:text-7xl tracking-tight leading-none">
-          {item?.name ||
-            item?.title ||
-            item?.original_name ||
-            item?.original_title}
-        </h1>
-        <p className="max-w-[80ch] text-zinc-300 text-sm md:text-lg">
-          {item?.overview.length > 180
-            ? item?.overview.slice(0, 180) + "..."
-            : item?.overview}
-        </p>
-        <Button text="Watch Trailer" />
-      </div>
-    </div>
-  );
+const Featured = ({ items }) => {
+  return <AutoplaySwiper data={items} />;
 };
 
 const Trending = ({ category, items }) => {
@@ -117,7 +101,7 @@ const Trending = ({ category, items }) => {
         </Link>
       </div>
 
-      <SwiperJs items={items} />
+      <FreemodeSwiper items={items} />
     </div>
   );
 };
