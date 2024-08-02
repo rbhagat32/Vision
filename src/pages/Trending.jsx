@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dropdown from "../components/Dropdown";
 import Cards from "../components/Cards";
 import axios from "../utils/axios";
-import { revertCapitalize } from "../utils/capitalize";
+import { capitalize, revertCapitalize } from "../utils/capitalize";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Trending() {
@@ -15,6 +15,7 @@ export default function Trending() {
   const [category, setCategory] = useState("all");
   const [duration, setDuration] = useState("day");
   const [page, setPage] = useState(1);
+  document.title = `Trending - ${capitalize(category)}`;
 
   const getTrending = () => {
     setLoading(true);
@@ -38,11 +39,17 @@ export default function Trending() {
     getTrending();
   }, [category, duration]);
 
+  const refreshInfiniteScroll = () => {
+    setTrending([]);
+    setPage(1);
+    getTrending();
+  };
+
   return (
     <div className="pb-10 px-4 md:px-12 pt-20 flex flex-col gap-8">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
-          <button onClick={() => navigate(-1)} className="mt-1.5">
+          <button onClick={() => navigate("/")} className="mt-1.5">
             <IoArrowBackOutline className="text-3xl lg:text-4xl" />
           </button>
           <h1 className="text-4xl lg:text-5xl font-semibold">Trending</h1>
@@ -74,6 +81,24 @@ export default function Trending() {
           hasMore={true}
           next={getTrending}
           loader={<Loading size="size-14" />}
+          endMessage={
+            <p className="w-fit mx-auto mt-10 text-lg text-zinc-400">
+              No More Movies !
+            </p>
+          }
+          refreshFunction={refreshInfiniteScroll}
+          pullDownToRefresh
+          pullDownToRefreshThreshold={50}
+          pullDownToRefreshContent={
+            <h3 style={{ textAlign: "center" }} className="mb-4">
+              &#8595; Pull down to refresh
+            </h3>
+          }
+          releaseToRefreshContent={
+            <h3 style={{ textAlign: "center" }} className="mb-4">
+              &#8593; Release to refresh
+            </h3>
+          }
         >
           <Cards data={trending} />
         </InfiniteScroll>

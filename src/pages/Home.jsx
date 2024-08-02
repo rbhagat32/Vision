@@ -11,6 +11,7 @@ export default function Home() {
   const [featured, setFeatured] = useState(null);
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
+  document.title = "Vision";
 
   const getFeatured = () => {
     setLoading(true);
@@ -110,7 +111,7 @@ const Trending = ({ category, items }) => {
 
         <Link
           to={`/${category}`}
-          className="block text-zinc-400 hover:text-violet-400 duration-300 ease-in-out"
+          className="block text-zinc-400 hover:text-rose-400 duration-300 ease-in-out"
         >
           Explore More
         </Link>

@@ -108,7 +108,7 @@ export default function Navbar() {
         transition={{ duration: 0.3 }}
         className="fixed z-[999] mt-2 py-2 px-4 md:px-12 w-full flex justify-between items-center"
       >
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
           <button
             onClick={() => setSideBar(!sideBar)}
             className="bg-transparent border border-white rounded-full p-1"
@@ -123,8 +123,10 @@ export default function Navbar() {
           <Link
             to="/"
             onClick={() => setSideBar(false)}
-            className="bg-violet-500 w-20 h-10"
-          ></Link>
+            className="relative -top-0.5 font-black text-3xl sm:text-4xl"
+          >
+            Vision
+          </Link>
         </div>
 
         <div className="glass relative rounded-full">
@@ -134,7 +136,7 @@ export default function Navbar() {
               setQuery(e.target.value);
               setIsHidden(false);
             }}
-            className="outline-none border border-white rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-56 md:w-72 lg:w-96"
+            className="outline-none border border-white rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-48 md:w-72 lg:w-96"
             type="text"
             placeholder="Search"
           />
@@ -161,7 +163,7 @@ export default function Navbar() {
                     <Link
                       to=""
                       key={i}
-                      className="flex gap-3 md:gap-4 items-center p-4 hover:bg-violet-500 rounded-lg duration-300 ease-in-out"
+                      className="flex gap-3 md:gap-4 items-center p-4 hover:bg-rose-400 rounded-lg duration-300 ease-in-out"
                     >
                       <div className="size-16 md:size-20 lg:size-28 flex-shrink-0 shadow-lg">
                         <img
@@ -208,7 +210,7 @@ export default function Navbar() {
               <Link
                 to={item.to}
                 onClick={() => setSideBar(false)}
-                className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out"
+                className="flex gap-2 items-center hover:bg-rose-400 pl-4 py-5 rounded-lg duration-300 ease-in-out"
               >
                 {item.icon}
                 {item.title}
