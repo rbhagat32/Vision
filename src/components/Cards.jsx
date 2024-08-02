@@ -12,7 +12,7 @@ export default function Cards({ data }) {
         >
           <div className="relative">
             <img
-              src={`https://image.tmdb.org/t/p/original/${
+              src={`https://image.tmdb.org/t/p/w500/${
                 item?.backdrop_path || item?.poster_path || item?.profile_path
               }`}
               className="w-full h-full object-cover"
