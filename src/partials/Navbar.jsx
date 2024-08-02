@@ -137,7 +137,6 @@ export default function Navbar() {
                 className="cursor-pointer relative -top-0.5 font-black text-3xl sm:text-4xl"
               >
                 Vision
-                <span className="ml-1 relative top-[1px] inline-block size-4 sm:size-[18px] bg-rose-400 rounded-full"></span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -150,7 +149,7 @@ export default function Navbar() {
               setQuery(e.target.value);
               setIsHidden(false);
             }}
-            className="outline-none border border-white focus:border-rose-400 rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-48 md:w-72 lg:w-96 duration-300 ease-in-out"
+            className="outline-none border border-white focus:border-rose-400 rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-44 md:w-72 lg:w-96 duration-300 ease-in-out"
             type="text"
             placeholder="Search"
           />
@@ -168,7 +167,7 @@ export default function Navbar() {
 
           {/* Searches */}
           {query.length > 0 && (
-            <div className="bg-zinc-800 rounded-lg absolute top-[110%] w-full max-h-80 overflow-auto">
+            <div className="bg-zinc-800 rounded-lg absolute top-[110%] w-full max-h-80 overflow-y-auto overflow-x-hidden">
               {loading ? (
                 <Loading />
               ) : (
