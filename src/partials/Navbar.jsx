@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "../utils/axios";
 import Loading from "../utils/Loading";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { Link } from "react-router-dom";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 import { BiSearch, BiSolidCameraMovie } from "react-icons/bi";
 import { RiFireFill } from "react-icons/ri";
 import { BsStars, BsPeopleFill } from "react-icons/bs";
@@ -11,6 +16,7 @@ import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import { IoMdContact } from "react-icons/io";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const sideNavData = [
     {
       icon: <RiFireFill className="mt-0.5" />,
@@ -120,14 +126,21 @@ export default function Navbar() {
             )}
           </button>
 
-          <Link
-            to="/"
-            onClick={() => setSideBar(false)}
-            className="relative -top-0.5 font-black text-3xl sm:text-4xl"
-          >
-            Vision
-            <span className="ml-1 relative top-[1px] inline-block size-4 sm:size-[18px] bg-rose-400 rounded-full"></span>
-          </Link>
+          <AnimatePresence>
+            {!sideBar && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={() => navigate("/")}
+                className="cursor-pointer relative -top-0.5 font-black text-3xl sm:text-4xl"
+              >
+                Vision
+                <span className="ml-1 relative top-[1px] inline-block size-4 sm:size-[18px] bg-rose-400 rounded-full"></span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="glass relative rounded-full">

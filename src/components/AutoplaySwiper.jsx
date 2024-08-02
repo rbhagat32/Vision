@@ -27,6 +27,7 @@ export default function App({ data }) {
               backgroundSize: "cover",
               backgroundPosition: "top",
               backgroundRepeat: "no-repeat",
+              minHeight: "70vh",
             }}
           >
             <div className="px-4 md:px-12 py-10 w-full h-full flex flex-col gap-4 justify-end">

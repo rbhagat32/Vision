@@ -47,7 +47,7 @@ export default function FreemodeSwiper({ items }) {
               to=""
               className="group block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
             >
-              <div className="relative">
+              <div className="relative" style={{ minHeight: "200px" }}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${
                     item?.backdrop_path ||
