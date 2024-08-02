@@ -45,7 +45,9 @@ export default function Trending() {
     getTrending();
   };
 
-  return (
+  return loading && trending.length === 0 ? (
+    <Loading height="h-screen" size="size-14" />
+  ) : (
     <div className="pb-10 px-4 md:px-12 pt-20 flex flex-col gap-8">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
@@ -72,37 +74,32 @@ export default function Trending() {
           />
         </div>
       </div>
-
-      {loading && trending.length === 0 ? (
-        <Loading height="h-screen" size="size-14" />
-      ) : (
-        <InfiniteScroll
-          dataLength={trending.length}
-          hasMore={true}
-          next={getTrending}
-          loader={<Loading size="size-14" />}
-          endMessage={
-            <p className="w-fit mx-auto mt-10 text-lg text-zinc-400">
-              No More Movies !
-            </p>
-          }
-          refreshFunction={refreshInfiniteScroll}
-          pullDownToRefresh
-          pullDownToRefreshThreshold={50}
-          pullDownToRefreshContent={
-            <h3 style={{ textAlign: "center" }} className="mb-4">
-              &#8595; Pull down to refresh
-            </h3>
-          }
-          releaseToRefreshContent={
-            <h3 style={{ textAlign: "center" }} className="mb-4">
-              &#8593; Release to refresh
-            </h3>
-          }
-        >
-          <Cards data={trending} />
-        </InfiniteScroll>
-      )}
+      <InfiniteScroll
+        dataLength={trending.length}
+        hasMore={true}
+        next={getTrending}
+        loader={<Loading size="size-14" />}
+        endMessage={
+          <p className="w-fit mx-auto mt-10 text-lg text-zinc-400">
+            No More Movies !
+          </p>
+        }
+        refreshFunction={refreshInfiniteScroll}
+        pullDownToRefresh
+        pullDownToRefreshThreshold={50}
+        pullDownToRefreshContent={
+          <h3 style={{ textAlign: "center" }} className="mb-4">
+            &#8595; Pull down to refresh
+          </h3>
+        }
+        releaseToRefreshContent={
+          <h3 style={{ textAlign: "center" }} className="mb-4">
+            &#8593; Release to refresh
+          </h3>
+        }
+      >
+        <Cards data={trending} />
+      </InfiniteScroll>
     </div>
   );
 }

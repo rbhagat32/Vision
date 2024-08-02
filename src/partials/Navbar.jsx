@@ -126,6 +126,7 @@ export default function Navbar() {
             className="relative -top-0.5 font-black text-3xl sm:text-4xl"
           >
             Vision
+            <span className="ml-1 relative top-[1px] inline-block size-3.5 bg-rose-400 rounded-full"></span>
           </Link>
         </div>
 

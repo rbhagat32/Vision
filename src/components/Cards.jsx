@@ -23,7 +23,7 @@ export default function Cards({ data }) {
           </div>
 
           <div className="mt-2 px-2 flex flex-col gap-2">
-            <h1 className="text-2xl">
+            <h1 className="text-3xl">
               {item?.name ||
                 item?.title ||
                 item?.original_name ||
