@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "../utils/axios";
+import { Link } from "react-router-dom";
 import Loading from "../utils/Loading";
 import Button from "../components/Button";
 import SwiperJs from "../components/SwiperJs";
+import { capitalize } from "../utils/capitalize";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -61,8 +63,8 @@ export default function Home() {
   ) : (
     <div className="pb-10">
       <Featured item={featured} />
-      <Trending category="Movies" items={movies} />
-      <Trending category="TV Shows" items={tvShows} />
+      <Trending category="movies" items={movies} />
+      <Trending category="tv-shows" items={tvShows} />
     </div>
   );
 }
@@ -72,7 +74,7 @@ const Featured = ({ item }) => {
     <div
       className="h-[70vh]"
       style={{
-        background: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original/${
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original/${
           item?.backdrop_path || item?.poster_path
         })`,
         backgroundSize: "cover",
@@ -103,8 +105,15 @@ const Trending = ({ category, items }) => {
     <div className="px-4 md:px-12 mt-16 w-full flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <h1 className="mb-2 font-medium text-3xl lg:text-4xl">
-          Trending {category}
+          Trending {`${capitalize(category)}`}
         </h1>
+
+        <Link
+          to={`/trending/${category}`}
+          className="block text-zinc-400 hover:text-violet-400 duration-300 ease-in-out"
+        >
+          Explore More
+        </Link>
       </div>
 
       <SwiperJs items={items} />

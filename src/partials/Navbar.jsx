@@ -11,6 +11,39 @@ import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import { IoMdContact } from "react-icons/io";
 
 export default function Navbar() {
+  const sideNavData = [
+    {
+      icon: <RiFireFill className="mt-0.5" />,
+      title: "Trending",
+      to: "/trending",
+    },
+    {
+      icon: <BsStars className="mt-0.5" />,
+      title: "Popular",
+      to: "/popular",
+    },
+    {
+      icon: <BiSolidCameraMovie className="mt-0.5" />,
+      title: "Movies",
+      to: "/movies",
+    },
+    {
+      icon: <PiTelevisionSimpleFill className="mt-0.5" />,
+      title: "TV Shows",
+      to: "/tv-shows",
+    },
+    {
+      icon: <BsPeopleFill className="mt-0.5" />,
+      title: "People",
+      to: "/people",
+    },
+    {
+      icon: <IoMdContact className="mt-0.5" />,
+      title: "Contact Us",
+      to: "/contact",
+    },
+  ];
+
   // hide/unhide top nav on scroll
   const [isHidden, setIsHidden] = useState(false);
 
@@ -87,7 +120,11 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* <div className="bg-violet-500 w-20 h-10">add logo here</div> */}
+          <Link
+            to="/"
+            onClick={() => setSideBar(false)}
+            className="bg-violet-500 w-20 h-10"
+          ></Link>
         </div>
 
         <div className="glass relative rounded-full">
@@ -128,6 +165,7 @@ export default function Navbar() {
                     >
                       <div className="size-16 md:size-20 lg:size-28 flex-shrink-0 shadow-lg">
                         <img
+                          loading="eager"
                           src={
                             item?.backdrpo_path ||
                             item?.poster_path ||
@@ -165,31 +203,20 @@ export default function Navbar() {
         className="fixed z-[998] h-screen w-52 md:w-60 lg:w-72 xl:w-84 top-0 left-0 border-r border-zinc-600 bg-zinc-900/90"
       >
         <div className="relative top-24 flex flex-col gap-8 px-4 md:px-8 text-xl lg:text-2xl">
-          <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
-            <RiFireFill className="mt-0.5" />
-            Trending
-          </Link>
-          <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
-            <BsStars className="mt-0.5" />
-            Popular
-          </Link>
-          <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
-            <BiSolidCameraMovie className="mt-0.5" />
-            Movies
-          </Link>
-          <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
-            <PiTelevisionSimpleFill className="mt-0.5" />
-            TV Shows
-          </Link>
-          <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
-            <BsPeopleFill className="mt-0.5" />
-            People
-          </Link>
-          <hr />
-          <Link className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out">
-            <IoMdContact className="mt-0.5" />
-            Contact Us
-          </Link>
+          {sideNavData.map((item, i) => (
+            <React.Fragment key={i}>
+              <Link
+                to={item.to}
+                onClick={() => setSideBar(false)}
+                className="flex gap-2 items-center hover:bg-violet-500 pl-4 py-4 rounded-lg duration-300 ease-in-out"
+              >
+                {item.icon}
+                {item.title}
+              </Link>
+
+              {i === sideNavData.length - 2 && <hr />}
+            </React.Fragment>
+          ))}
         </div>
       </motion.div>
     </>

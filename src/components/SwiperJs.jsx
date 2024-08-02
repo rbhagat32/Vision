@@ -41,16 +41,18 @@ export default function SwiperJs({ items }) {
         modules={[FreeMode]}
         className="mySwiper"
       >
-        {items.map((item) => (
-          <SwiperSlide key={item.id}>
+        {items.map((item, i) => (
+          <SwiperSlide key={i}>
             <Link
               to=""
-              className="block pb-4 border border-zinc-700 rounded-md overflow-hidden"
+              className="group block pb-3 border border-zinc-700 rounded-md overflow-hidden"
             >
-              <div className="relative w-full h-full">
+              <div className="relative">
                 <img
                   src={`https://image.tmdb.org/t/p/original/${
-                    item.backdrop_path || item.poster_path || item.profile_path
+                    item?.backdrop_path ||
+                    item?.poster_path ||
+                    item?.profile_path
                   }`}
                   className="w-full h-full object-cover"
                 />
@@ -60,11 +62,11 @@ export default function SwiperJs({ items }) {
               </div>
 
               <div className="mt-2 h-16 flex justify-start">
-                <h1 className="px-2 text-2xl text-zinc-400">
-                  {item.name ||
-                    item.title ||
-                    item.original_name ||
-                    item.original_title}
+                <h1 className="group-hover:text-white px-2 text-2xl text-zinc-400 duration-300 ease-in-out">
+                  {item?.name ||
+                    item?.title ||
+                    item?.original_name ||
+                    item?.original_title}
                 </h1>
               </div>
             </Link>
