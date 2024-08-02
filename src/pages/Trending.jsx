@@ -6,6 +6,7 @@ import Dropdown from "../components/Dropdown";
 import Cards from "../components/Cards";
 import axios from "../utils/axios";
 import { revertCapitalize } from "../utils/capitalize";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Trending() {
   const navigate = useNavigate();
@@ -13,27 +14,32 @@ export default function Trending() {
   const [trending, setTrending] = useState([]);
   const [category, setCategory] = useState("all");
   const [duration, setDuration] = useState("day");
+  const [page, setPage] = useState(1);
 
   const getTrending = () => {
     setLoading(true);
     axios
-      .get(`/trending/${category}/${duration}`)
+      .get(`/trending/${category}/${duration}?page=${page}`)
       .then((res) => {
-        setTrending(res.data.results);
+        console.log(res.data);
+        setTrending((prev) => [...prev, ...res.data.results]);
+        setPage(page + 1);
         setLoading(false);
       })
       .catch((err) => {
         console.error(err);
+        setLoading(false);
       });
   };
 
   useEffect(() => {
+    // Reset trending and page when category or duration changes
+    setTrending([]);
+    setPage(1);
     getTrending();
   }, [category, duration]);
 
-  return loading ? (
-    <Loading height="h-screen" size="size-14" />
-  ) : (
+  return (
     <div className="pb-10 px-4 md:px-12 pt-20 flex flex-col gap-8">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
@@ -61,7 +67,18 @@ export default function Trending() {
         </div>
       </div>
 
-      <Cards data={trending} />
+      {loading && trending.length === 0 ? (
+        <Loading height="h-screen" size="size-14" />
+      ) : (
+        <InfiniteScroll
+          dataLength={trending.length}
+          hasMore={true}
+          next={getTrending}
+          loader={<Loading size="size-14" />}
+        >
+          <Cards data={trending} />
+        </InfiniteScroll>
+      )}
     </div>
   );
 }
