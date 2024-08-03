@@ -185,7 +185,7 @@ export default function Navbar() {
                             item?.backdrpo_path ||
                             item?.poster_path ||
                             item?.profile_path
-                              ? `https://image.tmdb.org/t/p/original/${
+                              ? `https://image.tmdb.org/t/p/w300/${
                                   item?.backdrop_path ||
                                   item?.poster_path ||
                                   item?.profile_path

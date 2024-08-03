@@ -12,9 +12,15 @@ export default function Cards({ data }) {
         >
           <div className="relative" style={{ minHeight: "200px" }}>
             <img
-              src={`https://image.tmdb.org/t/p/w500/${
-                item?.backdrop_path || item?.poster_path || item?.profile_path
-              }`}
+              src={
+                item?.backdrpo_path || item?.poster_path || item?.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${
+                      item?.backdrop_path ||
+                      item?.poster_path ||
+                      item?.profile_path
+                    }`
+                  : "/no-image.webp"
+              }
               className="w-full h-full object-cover"
             />
             {item?.vote_average ? (

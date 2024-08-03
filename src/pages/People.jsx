@@ -25,7 +25,6 @@ export default function People() {
       })
       .catch((err) => {
         console.error(err);
-        setLoading(false);
       });
   };
 
