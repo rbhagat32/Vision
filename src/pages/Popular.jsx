@@ -27,7 +27,6 @@ export default function Popular() {
       })
       .catch((err) => {
         console.error(err);
-        setLoading(false);
       });
   };
 

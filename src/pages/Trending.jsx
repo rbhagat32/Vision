@@ -28,7 +28,6 @@ export default function Trending() {
       })
       .catch((err) => {
         console.error(err);
-        setLoading(false);
       });
   };
 
