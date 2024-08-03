@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
 
 export default function Cards({ data, mediaType }) {
   return (
@@ -46,6 +47,13 @@ export default function Cards({ data, mediaType }) {
           </div>
         </Link>
       ))}
+
+      <div
+        onClick={() => window.scrollTo(0, 0)}
+        className="glass fixed bottom-[6%] right-[4%] md:right-[3%] p-2 cursor-pointer rounded-full text-5xl"
+      >
+        <FaRegArrowAltCircleUp />
+      </div>
     </div>
   );
 }
