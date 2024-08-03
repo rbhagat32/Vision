@@ -17,6 +17,7 @@ import { IoMdContact } from "react-icons/io";
 
 export default function Navbar() {
   const sideBarRef = useRef(null);
+  const sideNavControlRef = useRef(null);
   const navigate = useNavigate();
   const sideNavData = [
     {
@@ -78,11 +79,15 @@ export default function Navbar() {
   const [sideBar, setSideBar] = useState(false);
   useEffect(() => {
     if (sideBar) {
+      sideNavControlRef.current.style.display = "block";
       sideBarRef.current.style.overflowY = "auto";
       document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
     }
+
+    return () => {
+      sideNavControlRef.current.style.display = "none";
+      document.body.style.overflowY = "auto";
+    };
   }, [sideBar]);
 
   // search query state
@@ -177,6 +182,7 @@ export default function Navbar() {
                   return (
                     <Link
                       to={`/${item?.media_type}/${item?.id}`}
+                      onClick={() => setQuery("")}
                       key={i}
                       className="flex gap-3 md:gap-4 items-center p-4 hover:bg-rose-400 rounded-lg duration-300 ease-in-out"
                     >
@@ -225,7 +231,10 @@ export default function Navbar() {
             <React.Fragment key={i}>
               <Link
                 to={item.to}
-                onClick={() => setSideBar(false)}
+                onClick={() => {
+                  setSideBar(false);
+                  setQuery("");
+                }}
                 className="flex gap-2 items-center hover:bg-rose-400 pl-4 py-5 rounded-lg duration-300 ease-in-out"
               >
                 {item.icon}
@@ -237,6 +246,14 @@ export default function Navbar() {
           ))}
         </div>
       </motion.div>
+
+      {/* Side Nav Click Control */}
+      <div
+        ref={sideNavControlRef}
+        onClick={() => setSideBar(false)}
+        style={{ display: "none" }}
+        className="fixed z-[997] w-screen h-screen bg-transparent"
+      />
     </>
   );
 }
