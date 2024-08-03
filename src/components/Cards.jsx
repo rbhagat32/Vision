@@ -13,11 +13,9 @@ export default function Cards({ data, mediaType }) {
           <div className="relative" style={{ minHeight: "220px" }}>
             <img
               src={
-                item?.backdrpo_path || item?.poster_path || item?.profile_path
+                item?.backdrop_path || item?.profile_path
                   ? `https://image.tmdb.org/t/p/w500/${
-                      item?.backdrop_path ||
-                      item?.poster_path ||
-                      item?.profile_path
+                      item?.backdrop_path || item?.profile_path
                     }`
                   : "/no-image.webp"
               }
