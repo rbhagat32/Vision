@@ -22,7 +22,7 @@ export default function Home() {
         const randomItems = [];
         const usedIndices = new Set();
 
-        while (randomItems.length < results.length && randomItems.length < 5) {
+        while (randomItems.length < results.length && randomItems.length < 8) {
           const randomIndex = Math.floor(Math.random() * results.length);
           if (!usedIndices.has(randomIndex)) {
             randomItems.push(results[randomIndex]);

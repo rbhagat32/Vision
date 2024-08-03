@@ -12,7 +12,7 @@ export default function App({ data }) {
         disableOnInteraction: false,
       }}
       loop={true}
-      // cssMode={true}
+      // cssMode={true} adds smooth sliding but doesnot allow swipe with cursor
       modules={[Autoplay]}
       className="mySwiper"
     >
