@@ -16,6 +16,7 @@ import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import { IoMdContact } from "react-icons/io";
 
 export default function Navbar() {
+  const sideBarRef = useRef(null);
   const navigate = useNavigate();
   const sideNavData = [
     {
@@ -77,6 +78,7 @@ export default function Navbar() {
   const [sideBar, setSideBar] = useState(false);
   useEffect(() => {
     if (sideBar) {
+      sideBarRef.current.style.overflowY = "auto";
       document.body.style.overflowY = "hidden";
     } else {
       document.body.style.overflowY = "auto";
@@ -182,7 +184,7 @@ export default function Navbar() {
                         <img
                           loading="eager"
                           src={
-                            item?.backdrpo_path ||
+                            item?.backdrop_path ||
                             item?.poster_path ||
                             item?.profile_path
                               ? `https://image.tmdb.org/t/p/w300/${
@@ -212,6 +214,7 @@ export default function Navbar() {
 
       {/* Side Nav */}
       <motion.div
+        ref={sideBarRef}
         initial={{ x: "-100%" }}
         animate={sideBar ? { x: 0 } : { x: "-100%" }}
         transition={{ duration: 0.3 }}

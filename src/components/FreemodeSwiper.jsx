@@ -49,11 +49,11 @@ export default function FreemodeSwiper({ items, mediaType }) {
             >
               <div className="relative" style={{ minHeight: "200px" }}>
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${
-                    item?.backdrop_path ||
-                    item?.poster_path ||
-                    item?.profile_path
-                  }`}
+                  src={
+                    item?.backdrop_path
+                      ? `https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`
+                      : "/no-image.webp"
+                  }
                   className="w-full h-full object-cover"
                 />
                 <div className="mb-5 mr-4 absolute bottom-0 right-0 size-12 bg-rose-500 rounded-full grid place-items-center text-xl font-semibold">
