@@ -90,7 +90,7 @@ export default function Navbar() {
     };
   }, [sideBar]);
 
-  // search query state
+  // search bar states
   const [query, setQuery] = useState("");
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -252,7 +252,7 @@ export default function Navbar() {
         ref={sideNavControlRef}
         onClick={() => setSideBar(false)}
         style={{ display: "none" }}
-        className="fixed z-[997] w-screen h-screen bg-transparent"
+        className="backdrop-blur-sm fixed z-[997] w-screen h-screen bg-black/10"
       />
     </>
   );
