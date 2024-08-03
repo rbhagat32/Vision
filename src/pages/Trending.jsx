@@ -97,7 +97,7 @@ export default function Trending() {
           </h3>
         }
       >
-        <Cards data={trending} />
+        <Cards data={trending} mediaType={category} />
       </InfiniteScroll>
     </div>
   );

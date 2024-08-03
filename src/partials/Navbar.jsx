@@ -174,7 +174,7 @@ export default function Navbar() {
                 searchData.map((item, i) => {
                   return (
                     <Link
-                      to=""
+                      to={`/${item?.media_type}/${item?.id}`}
                       key={i}
                       className="flex gap-3 md:gap-4 items-center p-4 hover:bg-rose-400 rounded-lg duration-300 ease-in-out"
                     >

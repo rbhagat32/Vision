@@ -90,7 +90,7 @@ export default function Popular() {
           </h3>
         }
       >
-        <Cards data={popular} />
+        <Cards data={popular} mediaType={category} />
       </InfiniteScroll>
     </div>
   );

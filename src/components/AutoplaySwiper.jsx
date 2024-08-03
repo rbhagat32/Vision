@@ -4,7 +4,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import Button from "../components/Button";
 
-export default function App({ data }) {
+export default function App({ data, mediaType }) {
   return (
     <Swiper
       autoplay={{
@@ -42,7 +42,10 @@ export default function App({ data }) {
                   ? item?.overview.slice(0, 180) + "..."
                   : item?.overview}
               </p>
-              <Button text="Watch Trailer" />
+              <Button
+                text="Explore More"
+                to={`/${item?.media_type || mediaType}/${item?.id}`}
+              />
             </div>
           </div>
         </SwiperSlide>

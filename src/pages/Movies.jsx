@@ -90,7 +90,7 @@ export default function Movies() {
           </h3>
         }
       >
-        <Cards data={movies} />
+        <Cards data={movies} mediaType="movie" />
       </InfiniteScroll>
     </div>
   );

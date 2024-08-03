@@ -18,7 +18,6 @@ export default function People() {
     axios
       .get(`/person/popular?page=${page}`)
       .then((res) => {
-        console.log(res.data);
         setPeople((prev) => [...prev, ...res.data.results]);
         setPage(page + 1);
         setLoading(false);
@@ -75,7 +74,7 @@ export default function People() {
           </h3>
         }
       >
-        <Cards data={people} />
+        <Cards data={people} mediaType="person" />
       </InfiniteScroll>
     </div>
   );

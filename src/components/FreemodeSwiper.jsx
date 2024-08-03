@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { Link } from "react-router-dom";
 
-export default function FreemodeSwiper({ items }) {
+export default function FreemodeSwiper({ items, mediaType }) {
   // set window width on resize
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function FreemodeSwiper({ items }) {
         {items.map((item, i) => (
           <SwiperSlide key={i}>
             <Link
-              to=""
+              to={`/${item?.media_type || mediaType}/${item?.id}`}
               className="group block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
             >
               <div className="relative" style={{ minHeight: "200px" }}>

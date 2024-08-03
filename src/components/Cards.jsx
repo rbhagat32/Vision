@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Cards({ data }) {
+export default function Cards({ data, mediaType }) {
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {data.map((item, i) => (
         <Link
-          to=""
+          to={`/${item?.media_type || mediaType}/${item?.id}`}
           key={i}
           className="group block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
         >
-          <div className="relative" style={{ minHeight: "200px" }}>
+          <div className="relative" style={{ minHeight: "220px" }}>
             <img
               src={
                 item?.backdrpo_path || item?.poster_path || item?.profile_path

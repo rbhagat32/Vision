@@ -90,7 +90,7 @@ export default function TvShows() {
           </h3>
         }
       >
-        <Cards data={tvShows} />
+        <Cards data={tvShows} mediaType="tv" />
       </InfiniteScroll>
     </div>
   );
