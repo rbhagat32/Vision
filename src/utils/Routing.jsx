@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Loading from "./Loading";
-const Home = lazy(() => import("../pages/Home"));
+
+import Home from "../pages/Home";
 const Trending = lazy(() => import("../pages/Trending"));
 const Popular = lazy(() => import("../pages/Popular"));
 const Movies = lazy(() => import("../pages/Movies"));

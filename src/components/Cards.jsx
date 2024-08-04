@@ -48,6 +48,7 @@ export default function Cards({ data, mediaType }) {
         </Link>
       ))}
 
+      {/* Back to top */}
       <div
         onClick={() => window.scrollTo(0, 0)}
         className="glass fixed bottom-[6%] right-[4%] md:right-[3%] p-2 cursor-pointer rounded-full text-5xl"
