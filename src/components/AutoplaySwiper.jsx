@@ -19,7 +19,7 @@ export default function App({ data, mediaType }) {
       {data.map((item, i) => (
         <SwiperSlide key={i}>
           <div
-            className="h-[70vh] min-h-[70vh]"
+            className="h-[70vh]"
             style={{
               backgroundImage: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5),rgba(0,0,0,0.7)), url(https://image.tmdb.org/t/p/original/${
                 item?.backdrop_path || item?.poster_path

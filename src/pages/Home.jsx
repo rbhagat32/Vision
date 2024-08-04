@@ -82,7 +82,11 @@ export default function Home() {
 }
 
 const Featured = ({ items }) => {
-  return <AutoplaySwiper data={items} />;
+  return (
+    <div className="h-[70vh]">
+      <AutoplaySwiper data={items} />
+    </div>
+  );
 };
 
 const Trending = ({ category, items }) => {
