@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function People() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
   document.title = `People`;

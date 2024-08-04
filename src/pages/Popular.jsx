@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Popular() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [popular, setPopular] = useState([]);
   const [category, setCategory] = useState("movie");
   const [page, setPage] = useState(1);

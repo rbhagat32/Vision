@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function TvShows() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [tvShows, setTvShows] = useState([]);
   const [category, setCategory] = useState("airing_today");
   const [page, setPage] = useState(1);

@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Trending() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [trending, setTrending] = useState([]);
   const [category, setCategory] = useState("all");
   const [duration, setDuration] = useState("day");

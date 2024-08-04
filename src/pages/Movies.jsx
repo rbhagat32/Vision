@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Movies() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [category, setCategory] = useState("now_playing");
   const [page, setPage] = useState(1);

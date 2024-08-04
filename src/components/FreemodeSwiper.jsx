@@ -52,11 +52,11 @@ export default function FreemodeSwiper({ items, mediaType }) {
                   src={
                     item?.backdrop_path
                       ? `https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`
-                      : "/no-image.webp"
+                      : "/no-image.png"
                   }
                   className="w-full h-full object-cover"
                 />
-                <div className="mb-5 mr-4 absolute bottom-0 right-0 size-12 bg-rose-500 rounded-full grid place-items-center text-xl font-semibold">
+                <div className="mb-5 mr-4 absolute bottom-0 right-0 size-12 bg-rose-400 rounded-full grid place-items-center text-xl font-semibold">
                   {item?.vote_average ? item?.vote_average.toFixed(1) : "N/A"}
                 </div>
               </div>

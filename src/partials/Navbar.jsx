@@ -122,7 +122,7 @@ export default function Navbar() {
         <div className="flex gap-2 sm:gap-3 md:gap-4 items-center">
           <button
             onClick={() => setSideBar(!sideBar)}
-            className={`bg-transparent border ${
+            className={`bg-transparent border-2 ${
               sideBar ? "border-rose-400" : "border-white"
             } rounded-full p-1 duration-300 ease-in-out`}
           >
@@ -141,7 +141,7 @@ export default function Navbar() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
                 onClick={() => navigate("/")}
-                className="cursor-pointer relative -top-0.5 font-black text-3xl sm:text-4xl"
+                className="border-b-2 border-rose-400 cursor-pointer relative -top-0.5 font-black text-3xl sm:text-4xl"
               >
                 Vision
               </motion.div>
@@ -156,14 +156,14 @@ export default function Navbar() {
               setQuery(e.target.value);
               setIsHidden(false);
             }}
-            className="outline-none border border-white focus:border-rose-400 rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-44 md:w-72 lg:w-96 duration-300 ease-in-out"
+            className="outline-none border-2 border-white focus:border-rose-400 rounded-full text-white placeholder:text-white bg-transparent py-2 px-6 w-44 md:w-72 lg:w-96 duration-300 ease-in-out"
             type="text"
             placeholder="Search"
           />
-          <div className="text-lg absolute top-0 right-0 pt-2 pr-3">
+          <div className="text-xl absolute top-0 right-0 pt-[9px] pr-3">
             {query.length > 0 ? (
               <button className="text-lg" onClick={() => setQuery("")}>
-                <IoCloseSharp />
+                <IoCloseSharp className="text-2xl" />
               </button>
             ) : (
               <div className="cursor-default mt-1">
@@ -190,17 +190,17 @@ export default function Navbar() {
                         <img
                           loading="eager"
                           src={
-                            item?.backdrop_path ||
                             item?.poster_path ||
+                            item?.backdrop_path ||
                             item?.profile_path
                               ? `https://image.tmdb.org/t/p/w300/${
-                                  item?.backdrop_path ||
                                   item?.poster_path ||
+                                  item?.backdrop_path ||
                                   item?.profile_path
                                 }`
-                              : "/no-image.webp"
+                              : "/no-image.png"
                           }
-                          className="w-full h-full object-cover rounded-md"
+                          className="w-full h-full object-cover object-top rounded-md"
                         />
                       </div>
                       <h2 className="text-sm md:text-md lg:text-xl">
@@ -241,7 +241,7 @@ export default function Navbar() {
                 {item.title}
               </Link>
 
-              {i === sideNavData.length - 2 && <hr />}
+              {i === sideNavData.length - 2 && <hr className="outline-none" />}
             </React.Fragment>
           ))}
         </div>
