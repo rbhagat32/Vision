@@ -1,5 +1,5 @@
 import axios from "../../utils/axios";
-import { getMovie, removeMovie } from "../reducers/MovieReducer";
+import { getMovie } from "../reducers/MovieReducer";
 export { removeMovie } from "../reducers/MovieReducer";
 
 export const asyncGetMovie = (id) => async (dispatch, getState) => {

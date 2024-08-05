@@ -19,7 +19,6 @@ export default function MovieDetails() {
     setLoading(true);
     dispatch(asyncGetMovie(id)).finally(() => {
       setLoading(false);
-      console.log(movie);
     });
 
     return () => {
