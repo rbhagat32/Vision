@@ -182,7 +182,10 @@ export default function Navbar() {
                   return (
                     <Link
                       to={`/${item?.media_type}/${item?.id}`}
-                      onClick={() => setQuery("")}
+                      onClick={() => {
+                        setQuery("");
+                        setSideBar(false);
+                      }}
                       key={i}
                       className="flex gap-3 md:gap-4 items-center p-4 hover:bg-rose-400 rounded-lg duration-300 ease-in-out"
                     >

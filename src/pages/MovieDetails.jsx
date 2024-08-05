@@ -202,7 +202,10 @@ export default function MovieDetails() {
                 Recommended :
               </h1>
 
-              <FreemodeSwiper items={movie?.recommendations} />
+              <FreemodeSwiper
+                items={movie?.recommendations}
+                mediaType="movie"
+              />
             </div>
           )}
         </div>
@@ -214,7 +217,7 @@ export default function MovieDetails() {
                 Similar Movies :
               </h1>
 
-              <FreemodeSwiper items={movie?.similar} />
+              <FreemodeSwiper items={movie?.similar} mediaType="movie" />
             </div>
           )}
         </div>
