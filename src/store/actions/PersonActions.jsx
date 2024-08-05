@@ -12,8 +12,6 @@ export const asyncGetPerson = (id) => async (dispatch, getState) => {
       credits: credits.data.cast,
     };
 
-    console.log(personData);
-
     dispatch(getPerson(personData));
   } catch (error) {
     console.log(error);

@@ -64,7 +64,7 @@ export default function MovieDetails() {
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
         }}
-        className="pb-10 px-4 md:px-12 pt-20 w-screen h-screen overflow-hidden"
+        className="px-4 md:px-12 pt-20 w-screen h-screen overflow-hidden"
       >
         <div className="w-full h-full overflow-y-auto">
           <div className="flex gap-3 items-center">
