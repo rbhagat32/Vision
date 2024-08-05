@@ -4,8 +4,11 @@ import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function FreemodeSwiper({ items, mediaType }) {
+  const [isHovered, setIsHovered] = useState({ bool: false, index: 0 });
+
   // set window width on resize
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -45,8 +48,24 @@ export default function FreemodeSwiper({ items, mediaType }) {
           <SwiperSlide key={i}>
             <Link
               to={`/${item?.media_type || mediaType}/${item?.id}`}
-              className="group block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
+              onMouseEnter={() => setIsHovered({ bool: true, index: i })}
+              onMouseLeave={() => setIsHovered({ bool: false, index: null })}
+              className="relative block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
             >
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: isHovered.bool && isHovered.index === i ? 1 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="absolute w-full h-full top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-10 pointer-events-none"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
+                  className="object-cover w-full h-full rounded-md"
+                />
+              </motion.div>
+
               <div className="relative" style={{ minHeight: "200px" }}>
                 <img
                   src={
@@ -62,7 +81,7 @@ export default function FreemodeSwiper({ items, mediaType }) {
               </div>
 
               <div className="mt-2 h-16">
-                <h1 className="group-hover:text-white px-2 text-2xl text-zinc-400 duration-300 ease-in-out">
+                <h1 className=" px-2 text-2xl">
                   {item?.name ||
                     item?.title ||
                     item?.original_name ||

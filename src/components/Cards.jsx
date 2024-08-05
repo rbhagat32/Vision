@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleUp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function Cards({ data, mediaType }) {
+  const [isHovered, setIsHovered] = useState({ bool: false, index: 0 });
+
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {data.map((item, i) => (
         <Link
           to={`/${item?.media_type || mediaType}/${item?.id}`}
           key={i}
-          className="group block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md overflow-hidden duration-300 ease-in-out"
+          onMouseEnter={() => setIsHovered({ bool: true, index: i })}
+          onMouseLeave={() => setIsHovered({ bool: false, index: null })}
+          className="relative block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md duration-300 ease-in-out"
         >
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: isHovered.bool && isHovered.index === i ? 1 : 0,
+            }}
+            transition={{ duration: 0.3 }}
+            className="absolute w-full h-full top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-10 pointer-events-none"
+          >
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
+              className="object-cover w-full h-full rounded-md"
+            />
+          </motion.div>
+
           <div className="relative" style={{ minHeight: "220px" }}>
             <img
               src={
@@ -39,8 +58,8 @@ export default function Cards({ data, mediaType }) {
 
             {item?.overview && (
               <p className="max-w-[80ch] text-zinc-400 text-sm md:text-md">
-                {item?.overview.length > 140
-                  ? item?.overview.slice(0, 140) + "..."
+                {item?.overview.length > 200
+                  ? item?.overview.slice(0, 200) + "..."
                   : item?.overview}
               </p>
             )}
