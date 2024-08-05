@@ -6,6 +6,7 @@ import Loading from "../utils/Loading";
 import { IoArrowBackOutline, IoGlobeOutline } from "react-icons/io5";
 import Button from "../components/Button";
 import FreemodeSwiper from "../components/FreemodeSwiper";
+import Reviews from "../components/Reviews";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -222,6 +223,8 @@ export default function MovieDetails() {
             </div>
           )}
         </div>
+
+        {movie?.reviews?.length > 0 && <Reviews reviews={movie?.reviews} />}
       </div>
     </div>
   );
