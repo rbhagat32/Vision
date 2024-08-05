@@ -203,7 +203,9 @@ export default function Navbar() {
                                 }`
                               : "/no-image.png"
                           }
-                          className="w-full h-full object-cover object-top rounded-md"
+                          className={`w-full h-full object-cover ${
+                            item?.profile_path ? "object-center" : "object-top"
+                          } rounded-md`}
                         />
                       </div>
                       <h2 className="text-sm md:text-md lg:text-xl">
