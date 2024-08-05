@@ -82,7 +82,7 @@ export default function FreemodeSwiper({ items, mediaType }) {
                 </div>
               </div>
 
-              <div className="mt-2 h-16">
+              <div className="mt-2 h-20">
                 <h1 className=" px-2 text-2xl">
                   {item?.name ||
                     item?.title ||

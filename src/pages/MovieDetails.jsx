@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import FreemodeSwiper from "../components/FreemodeSwiper";
 import Reviews from "../components/Reviews";
 import Trailer from "../components/Trailer";
+import Toast from "../components/Toast";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -52,7 +53,9 @@ export default function MovieDetails() {
       {showPlayer &&
         (movie?.videos?.key ? (
           <Trailer link={movie?.videos?.key} setShowPlayer={setShowPlayer} />
-        ) : null)}
+        ) : (
+          <Toast message="Trailer Not Available !" />
+        ))}
 
       <div
         style={{
