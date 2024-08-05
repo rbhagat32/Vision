@@ -20,8 +20,6 @@ export const asyncGetMovie = (id) => async (dispatch, getState) => {
       reviews: reviews.data.results,
     };
 
-    console.log(movieData);
-
     dispatch(getMovie(movieData));
   } catch (error) {
     console.log(error);

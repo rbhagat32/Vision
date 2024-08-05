@@ -15,8 +15,21 @@ export default function MovieDetails() {
 
   const [loading, setLoading] = useState(true);
   const movie = useSelector((state) => state.MovieReducer.movie);
-  document.title =
-    `Movie - ${movie?.details?.name || movie?.details?.title}` || "Movie";
+
+  if (
+    movie?.details?.name ||
+    movie?.details?.original_name ||
+    movie?.details?.title ||
+    movie?.details?.original_title
+  ) {
+    document.title =
+      `Movie - ${
+        movie?.details?.name ||
+        movie?.details?.original_name ||
+        movie?.details?.title ||
+        movie?.details?.original_title
+      }` || "Movie";
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -88,7 +101,9 @@ export default function MovieDetails() {
               <h1 className="text-zinc-400 lg:text-lg">
                 {/* mobile */}
                 <div className="block md:hidden">
-                  {movie?.details?.overview.slice(0, 100) + "..."}
+                  {movie?.details?.overview.length > 100
+                    ? movie?.details?.overview.slice(0, 100) + "..."
+                    : movie?.details?.overview}
                 </div>
 
                 {/* laptop */}

@@ -15,8 +15,21 @@ export default function TvShowDetails() {
 
   const [loading, setLoading] = useState(true);
   const tvShow = useSelector((state) => state.TvReducer.tvShow);
-  document.title =
-    `TV - ${tvShow?.details?.name || tvShow?.details?.title}` || "TV Show";
+
+  if (
+    tvShow?.details?.name ||
+    tvShow?.details?.original_name ||
+    tvShow?.details?.title ||
+    tvShow?.details?.original_title
+  ) {
+    document.title =
+      `TV - ${
+        tvShow?.details?.name ||
+        tvShow?.details?.original_name ||
+        tvShow?.details?.title ||
+        tvShow?.details?.original_title
+      }` || "TV Show";
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -88,7 +101,9 @@ export default function TvShowDetails() {
               <h1 className="text-zinc-400 lg:text-lg">
                 {/* mobile */}
                 <div className="block md:hidden">
-                  {tvShow?.details?.overview.slice(0, 100) + "..."}
+                  {tvShow?.details?.overview.length > 100
+                    ? tvShow?.details?.overview.slice(0, 100) + "..."
+                    : tvShow?.details?.overview}
                 </div>
 
                 {/* laptop */}
