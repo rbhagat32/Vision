@@ -2,8 +2,6 @@ import React from "react";
 import moment from "moment";
 
 export default function Reviews({ reviews }) {
-  console.log(reviews);
-
   return (
     <div className="mt-12">
       <h1 className="text-4xl font-semibold text-rose-400 mt-10 mb-3">
