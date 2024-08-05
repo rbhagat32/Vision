@@ -14,6 +14,8 @@ export default function TvShowDetails() {
 
   const [loading, setLoading] = useState(true);
   const tvShow = useSelector((state) => state.TvReducer.tvShow);
+  document.title =
+    `TV - ${tvShow?.details?.name || tvShow?.details?.title}` || "TV Show";
 
   useEffect(() => {
     setLoading(true);

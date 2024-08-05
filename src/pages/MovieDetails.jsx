@@ -14,6 +14,8 @@ export default function MovieDetails() {
 
   const [loading, setLoading] = useState(true);
   const movie = useSelector((state) => state.MovieReducer.movie);
+  document.title =
+    `Movie - ${movie?.details?.name || movie?.details?.title}` || "Movie";
 
   useEffect(() => {
     setLoading(true);
