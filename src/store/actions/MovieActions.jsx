@@ -11,6 +11,7 @@ export const asyncGetMovie = (id) => async (dispatch, getState) => {
     const watchProviders = await axios.get(`/movie/${id}/watch/providers`);
     const reviews = await axios.get(`/movie/${id}/reviews`);
     const cast = await axios.get(`/movie/${id}/credits`);
+    const externalIds = await axios.get(`/movie/${id}/external_ids`);
 
     const movieData = {
       details: details.data,
@@ -22,6 +23,7 @@ export const asyncGetMovie = (id) => async (dispatch, getState) => {
       cast: cast.data.cast.filter((actor) => {
         return actor?.popularity >= 15;
       }),
+      externalIds: externalIds.data,
     };
 
     dispatch(getMovie(movieData));

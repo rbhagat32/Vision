@@ -11,6 +11,7 @@ export const asyncGetTvShow = (id) => async (dispatch, getState) => {
     const watchProviders = await axios.get(`/tv/${id}/watch/providers`);
     const reviews = await axios.get(`/tv/${id}/reviews`);
     const cast = await axios.get(`/tv/${id}/credits`);
+    const externalIds = await axios.get(`/tv/${id}/external_ids`);
 
     const tvShowData = {
       details: details.data,
@@ -22,6 +23,7 @@ export const asyncGetTvShow = (id) => async (dispatch, getState) => {
       cast: cast.data.cast.filter((actor) => {
         return actor?.popularity >= 15;
       }),
+      externalIds: externalIds.data,
     };
 
     dispatch(getTvShow(tvShowData));

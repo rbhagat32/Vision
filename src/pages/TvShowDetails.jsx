@@ -76,7 +76,7 @@ export default function TvShowDetails() {
               <IoGlobeOutline className="text-2xl md:text-3xl" />
             </a>
             <a
-              href={`https://www.imdb.com/title/${tvShow?.details?.imdb_id}`}
+              href={`https://www.imdb.com/title/${tvShow?.externalIds?.imdb_id}`}
               target="_blank"
             >
               <p className="text-xl md:text-2xl font-bold">imdb</p>
@@ -123,12 +123,16 @@ export default function TvShowDetails() {
                   <div className="hidden md:block">
                     {tvShow?.details?.tagline}
                   </div>
-                  <p className="mt-5 hidden md:block text-4xl font-semibold text-rose-400">
-                    Overview:
-                  </p>
-                  <div className="hidden md:block">
-                    {tvShow?.details?.overview}
-                  </div>
+                  {tvShow?.details?.overview && (
+                    <>
+                      <p className="mt-5 hidden md:block text-4xl font-semibold text-rose-400">
+                        Overview:
+                      </p>
+                      <div className="hidden md:block">
+                        {tvShow?.details?.overview}
+                      </div>
+                    </>
+                  )}
                 </h1>
               </div>
               <div className="flex gap-2 flex-wrap">

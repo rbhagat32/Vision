@@ -209,10 +209,10 @@ export default function Navbar() {
                         />
                       </div>
                       <h2 className="text-sm md:text-md lg:text-xl">
-                        {item?.name ||
-                          item?.title ||
-                          item?.original_name ||
-                          item?.original_title}
+                        {item?.name?.slice(0, 30) ||
+                          item?.title?.slice(0, 30) ||
+                          item?.original_name?.slice(0, 30) ||
+                          item?.original_title?.slice(0, 30)}
                       </h2>
                     </Link>
                   );

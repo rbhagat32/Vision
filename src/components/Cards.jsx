@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-export default function Cards({ data, mediaType }) {
+export default function Cards({ data, mediaType, backToTop = true }) {
   const [isHovered, setIsHovered] = useState({ bool: false, index: 0 });
 
   return (
@@ -70,12 +70,14 @@ export default function Cards({ data, mediaType }) {
       ))}
 
       {/* Back to top */}
-      <div
-        onClick={() => window.scrollTo(0, 0)}
-        className="glass fixed bottom-[6%] right-[4%] md:right-[3%] p-2 cursor-pointer rounded-full text-5xl"
-      >
-        <FaRegArrowAltCircleUp />
-      </div>
+      {backToTop && (
+        <div
+          onClick={() => window.scrollTo(0, 0)}
+          className="glass fixed z-[100] bottom-[6%] right-[4%] md:right-[3%] p-2 cursor-pointer rounded-full text-5xl"
+        >
+          <FaRegArrowAltCircleUp />
+        </div>
+      )}
     </div>
   );
 }

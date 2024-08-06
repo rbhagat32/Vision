@@ -76,7 +76,7 @@ export default function MovieDetails() {
               <IoGlobeOutline className="text-2xl md:text-3xl" />
             </a>
             <a
-              href={`https://www.imdb.com/title/${movie?.details?.imdb_id}`}
+              href={`https://www.imdb.com/title/${movie?.externalIds?.imdb_id}`}
               target="_blank"
             >
               <p className="text-xl md:text-2xl font-bold">imdb</p>

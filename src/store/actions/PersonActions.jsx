@@ -9,7 +9,12 @@ export const asyncGetPerson = (id) => async (dispatch, getState) => {
 
     const personData = {
       details: details.data,
-      credits: credits.data.cast,
+      credits: credits.data.cast.filter((item) => {
+        return (
+          (item.media_type === "movie" || item.media_type === "tv") &&
+          item.popularity >= 15
+        );
+      }),
     };
 
     console.log(personData);
