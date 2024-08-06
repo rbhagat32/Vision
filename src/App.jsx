@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Routing from "./utils/Routing";
+import React, { useEffect } from "react";
 import Navbar from "./partials/Navbar";
+import Routing from "./utils/Routing";
 
 export default function App() {
   useEffect(() => {
