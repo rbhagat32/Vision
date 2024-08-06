@@ -17,8 +17,6 @@ export const asyncGetPerson = (id) => async (dispatch, getState) => {
       }),
     };
 
-    console.log(personData);
-
     dispatch(getPerson(personData));
   } catch (error) {
     console.log(error);

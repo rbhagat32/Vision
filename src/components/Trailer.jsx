@@ -4,10 +4,10 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function Trailer({ link, setShowPlayer }) {
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflowY = "hidden";
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = "auto";
     };
   }, []);
 

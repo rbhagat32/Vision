@@ -73,7 +73,7 @@ export default function Home() {
   return loading ? (
     <Loading height="h-screen" size="size-14" />
   ) : (
-    <div className="pb-10 overflow-hidden">
+    <div className="pb-10 overflow-x-hidden">
       <Featured items={featured} />
       <Trending category="movies" items={movies} />
       <Trending category="tv-shows" items={tvShows} />
