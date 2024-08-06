@@ -74,7 +74,11 @@ export default function PersonDetails() {
                   Biography :
                 </p>
                 <div className="mt-2">
-                  {person?.details?.biography?.slice(0, 280) + "..."}
+                  {person?.details?.biography
+                    ? person?.details?.biography
+                      ? person?.details?.biography?.slice(0, 280) + "..."
+                      : person?.details?.biography
+                    : "No data available currently."}
                 </div>
               </h1>
             </div>
@@ -83,7 +87,7 @@ export default function PersonDetails() {
 
         <div className="mt-12">
           <h1 className="text-4xl font-semibold text-rose-400 mt-10 mb-5">
-            Popular Movies and TV Shows :
+            Popular Movies / TV Shows :
           </h1>
           <Cards data={person?.credits} backToTop={false} />
         </div>
