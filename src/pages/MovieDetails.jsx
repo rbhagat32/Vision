@@ -9,6 +9,7 @@ import FreemodeSwiper from "../components/FreemodeSwiper";
 import Reviews from "../components/Reviews";
 import Trailer from "../components/Trailer";
 import Toast from "../components/Toast";
+import Cast from "../components/Cast";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -225,6 +226,8 @@ export default function MovieDetails() {
               </div>
             )}
           </div>
+
+          <div>{movie?.cast?.length > 0 && <Cast cast={movie?.cast} />}</div>
 
           <div>
             {movie?.recommendations?.length > 0 && (

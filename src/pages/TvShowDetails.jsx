@@ -9,6 +9,7 @@ import FreemodeSwiper from "../components/FreemodeSwiper";
 import Reviews from "../components/Reviews";
 import Trailer from "../components/Trailer";
 import Toast from "../components/Toast";
+import Cast from "../components/Cast";
 
 export default function TvShowDetails() {
   const { id } = useParams();
@@ -225,6 +226,8 @@ export default function TvShowDetails() {
               </div>
             )}
           </div>
+
+          <div>{tvShow?.cast?.length > 0 && <Cast cast={tvShow?.cast} />}</div>
 
           <div>
             {tvShow?.recommendations?.length > 0 && (
