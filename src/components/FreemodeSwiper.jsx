@@ -59,11 +59,11 @@ export default function FreemodeSwiper({ items, mediaType }) {
                     opacity: isHovered.bool && isHovered.index === i ? 1 : 0,
                   }}
                   transition={{ duration: 0.3 }}
-                  className="absolute w-full h-full top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-10 pointer-events-none"
+                  className="glass absolute w-full h-full top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-10 pointer-events-none"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
-                    className="object-cover w-full h-full rounded-md"
+                    className="object-contain w-full h-full"
                   />
                 </motion.div>
               )}

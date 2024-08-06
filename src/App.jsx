@@ -15,7 +15,7 @@ export default function App() {
     <div className="w-screen h-screen">
       <Navbar />
 
-      <div className="relative">
+      <div className="relative overflow-x-hidden">
         <Routing />
       </div>
     </div>

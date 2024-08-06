@@ -14,7 +14,7 @@ export default function Cards({ data, mediaType }) {
           key={i}
           onMouseEnter={() => setIsHovered({ bool: true, index: i })}
           onMouseLeave={() => setIsHovered({ bool: false, index: null })}
-          className="relative block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md duration-300 ease-in-out"
+          className="relative block pb-3 border border-zinc-700 hover:border-zinc-500 rounded-md duration-300 ease-in-out overflow-hidden"
         >
           {item?.poster_path && (
             <motion.div
@@ -23,11 +23,11 @@ export default function Cards({ data, mediaType }) {
                 opacity: isHovered.bool && isHovered.index === i ? 1 : 0,
               }}
               transition={{ duration: 0.3 }}
-              className="absolute w-full h-full top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-10 pointer-events-none"
+              className="glass absolute w-full h-full top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-10 pointer-events-none"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
-                className="object-cover w-full h-full rounded-md"
+                className="object-contain w-full h-full"
               />
             </motion.div>
           )}
