@@ -1,19 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "../utils/axios";
+import Loading from "../utils/Loading";
 
 export default function Contact() {
+  document.title = "Vision - Contact Us";
   const { register, handleSubmit, reset } = useForm();
 
-  useEffect(() => {}, []);
+  const [bg, setBg] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/trending/all/day")
+      .then((res) => {
+        const results = res.data.results;
+        const randomIndex = Math.floor(Math.random() * results.length);
+        setBg(results[randomIndex]);
+
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const sendData = (data) => {
     console.log(data);
   };
 
-  return (
-    <div className="w-screen h-screen grid place-items-center">
-      <div className="p-10 flex flex-col gap-10 items-center rounded-xl border border-zinc-600 hover:border-zinc-400 duration-300 ease-in-out">
+  return loading ? (
+    <Loading height="h-screen" size="size-14" />
+  ) : (
+    <div
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8),rgba(0,0,0,0.9)), url(https://image.tmdb.org/t/p/original/${bg?.backdrop_path})`,
+        backgroundSize: "cover",
+        backgroundPosition: "top",
+        backgroundRepeat: "no-repeat",
+      }}
+      className="w-screen h-screen grid place-items-center"
+    >
+      <div className="glass p-10 flex flex-col gap-10 items-center rounded-xl border border-zinc-600 hover:border-zinc-400 duration-300 ease-in-out">
         <h1 className="text-5xl">Contact Us</h1>
         <form
           onSubmit={handleSubmit(sendData)}
