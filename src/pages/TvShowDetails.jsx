@@ -55,7 +55,7 @@ export default function TvShowDetails() {
         (tvShow?.videos?.key ? (
           <Trailer link={tvShow?.videos?.key} setShowPlayer={setShowPlayer} />
         ) : (
-          <Toast message="Trailer Not Available !" />
+          <Toast success={false} message="Trailer Not Available !" />
         ))}
 
       <div

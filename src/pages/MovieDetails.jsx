@@ -55,7 +55,7 @@ export default function MovieDetails() {
         (movie?.videos?.key ? (
           <Trailer link={movie?.videos?.key} setShowPlayer={setShowPlayer} />
         ) : (
-          <Toast message="Trailer Not Available !" />
+          <Toast success={false} message="Trailer Not Available !" />
         ))}
 
       <div

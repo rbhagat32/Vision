@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "../utils/axios";
 import Loading from "../utils/Loading";
+import Toast from "../components/Toast";
 
 export default function Contact() {
   document.title = "Vision - Contact Us";
