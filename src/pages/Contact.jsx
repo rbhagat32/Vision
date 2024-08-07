@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "../utils/axios";
+// new axios instance for google sheets api
+import axios from "axios";
+// tmdb axios instance from utils.axios for getting background image
+import axiosTMDB from "../utils/axios";
 import Loading from "../utils/Loading";
 import Toast from "../components/Toast";
 
@@ -10,10 +13,15 @@ export default function Contact() {
 
   const [bg, setBg] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState({
+    visible: false,
+    success: false,
+    message: "",
+  });
 
   useEffect(() => {
     setLoading(true);
-    axios
+    axiosTMDB
       .get("/trending/all/day")
       .then((res) => {
         const results = res.data.results;
@@ -28,7 +36,28 @@ export default function Contact() {
   }, []);
 
   const sendData = (data) => {
-    console.log(data);
+    axios
+      .post("/sheets-api", JSON.stringify(data), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setToast({
+          visible: true,
+          success: true,
+          message: "Thanks for contacting us!",
+        });
+        reset();
+      })
+      .catch((error) => {
+        setToast({
+          visible: true,
+          success: false,
+          message: "Some error occurred!",
+        });
+        console.log(error);
+      });
   };
 
   return loading ? (
@@ -43,6 +72,10 @@ export default function Contact() {
       }}
       className="w-screen h-screen grid place-items-center"
     >
+      {toast.visible && (
+        <Toast success={toast.success} message={toast.message} />
+      )}
+
       <div className="glass p-10 flex flex-col gap-10 items-center rounded-xl border border-zinc-600 hover:border-zinc-400 duration-300 ease-in-out">
         <h1 className="text-5xl">Contact Us</h1>
         <form
