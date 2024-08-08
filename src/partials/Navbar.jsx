@@ -14,6 +14,7 @@ import { BsStars, BsPeopleFill } from "react-icons/bs";
 import { PiTelevisionSimpleFill } from "react-icons/pi";
 import { IoMenuOutline, IoCloseSharp } from "react-icons/io5";
 import { IoMdContact } from "react-icons/io";
+import useDebounce from "../hooks/useDebounce";
 
 export default function Navbar() {
   const sideBarRef = useRef(null);
@@ -92,22 +93,23 @@ export default function Navbar() {
 
   // search bar states
   const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 500);
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // fetch search data from api when search query changes
   useEffect(() => {
     setLoading(true);
-    if (query.length > 0) {
+    if (debouncedQuery.length > 0) {
       axios
-        .get(`/search/multi?query=${query}`)
+        .get(`/search/multi?query=${debouncedQuery}`)
         .then((res) => {
           setSearchData(res.data.results);
           setLoading(false);
         })
         .catch((err) => console.error(err));
     }
-  }, [query]);
+  }, [debouncedQuery]);
 
   return (
     <>

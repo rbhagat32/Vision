@@ -5,30 +5,20 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useDimension from "../hooks/useDimension";
 
 export default function FreemodeSwiper({ items, mediaType }) {
   const [isHovered, setIsHovered] = useState({ bool: false, index: 0 });
 
-  // set window width on resize
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const { width } = useDimension();
 
   // returns the number of slides per view based on window width
   const getSlidesPerView = () => {
-    if (windowWidth > 1280) {
+    if (width > 1280) {
       return 4;
-    } else if (windowWidth > 1024) {
+    } else if (width > 1024) {
       return 3;
-    } else if (windowWidth >= 640) {
+    } else if (width >= 640) {
       return 2;
     } else {
       return 1;
