@@ -36,6 +36,7 @@ export default function Contact() {
   }, []);
 
   const sendData = (data) => {
+    setLoading(true);
     axios
       .post("/sheets-api", JSON.stringify(data), {
         headers: {
@@ -43,12 +44,13 @@ export default function Contact() {
         },
       })
       .then((response) => {
+        reset();
+        setLoading(false);
         setToast({
           visible: true,
           success: true,
           message: "Thanks for contacting us!",
         });
-        reset();
       })
       .catch((error) => {
         setToast({

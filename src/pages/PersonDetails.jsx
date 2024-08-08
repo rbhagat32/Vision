@@ -75,7 +75,7 @@ export default function PersonDetails() {
                 </p>
                 <div className="mt-2">
                   {person?.details?.biography
-                    ? person?.details?.biography
+                    ? person?.details?.biography.length > 280
                       ? person?.details?.biography?.slice(0, 280) + "..."
                       : person?.details?.biography
                     : "No data available currently."}
