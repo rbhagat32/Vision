@@ -55,7 +55,11 @@ export default function TvShowDetails() {
         (tvShow?.videos?.key ? (
           <Trailer link={tvShow?.videos?.key} setShowPlayer={setShowPlayer} />
         ) : (
-          <Toast success={false} message="Trailer Not Available !" />
+          <Toast // unique key to allow re-render of toast when button is clicked again
+            key={new Date().getTime()}
+            success={false}
+            message="Trailer Not Available !"
+          />
         ))}
 
       <div
@@ -252,7 +256,7 @@ export default function TvShowDetails() {
             {tvShow?.similar?.length > 0 && (
               <div className="mt-12">
                 <h1 className="text-4xl font-semibold text-rose-400 mt-10 mb-3">
-                  Similar Movies :
+                  Similar TV Shows :
                 </h1>
 
                 <FreemodeSwiper items={tvShow?.similar} mediaType="tv" />

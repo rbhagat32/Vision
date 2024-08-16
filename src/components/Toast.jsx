@@ -7,7 +7,7 @@ export default function Toast({ success, message }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 4000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

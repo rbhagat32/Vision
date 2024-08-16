@@ -55,7 +55,12 @@ export default function MovieDetails() {
         (movie?.videos?.key ? (
           <Trailer link={movie?.videos?.key} setShowPlayer={setShowPlayer} />
         ) : (
-          <Toast success={false} message="Trailer Not Available !" />
+          <Toast
+            // unique key to allow re-render of toast when button is clicked again
+            key={new Date().getTime()}
+            success={false}
+            message="Trailer Not Available !"
+          />
         ))}
 
       <div

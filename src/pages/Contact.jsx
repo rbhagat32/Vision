@@ -75,7 +75,11 @@ export default function Contact() {
       className="w-screen h-screen grid place-items-center"
     >
       {toast.visible && (
-        <Toast success={toast.success} message={toast.message} />
+        <Toast // unique key to allow re-render of toast when button is clicked again
+          key={new Date().getTime()}
+          success={toast.success}
+          message={toast.message}
+        />
       )}
 
       <div className="glass p-10 flex flex-col gap-10 items-center rounded-xl border border-zinc-600 hover:border-zinc-400 duration-300 ease-in-out">
